@@ -71,7 +71,7 @@ if res == "Y" or res == "y":
 
 
 
-#################### ---Visualization--- ####################
+#################### ---Runtime Visualization--- ####################
 
 def vis_runtime_sorted_arr():
     time_stamp = []
