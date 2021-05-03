@@ -4,7 +4,7 @@ Insertion Sort is a simple sorting algorithm but can be quite powerful for pract
 
 We can see that one advantage is that if the array is largely sorted, then we don't need to perform any insertion operations. In real life, we usually have partially sorted iterable collections. Therefore, Insertion Sort can give a linear runtime in certain best-case scenarios where the array is almost sorted.
 
-The implementation in Python is intended for arrays with integers:
+It appears that we can pass in array containing any supported comparable items, and our algorithm will run as desired.
 
 ```python 
 def insertion_sort(arr):

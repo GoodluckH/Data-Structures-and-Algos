@@ -2,7 +2,7 @@
 
 Selection Sort works by selecting the smallest item and putting it in the front of the array by swapping it with the first item of the array. Then, we proceed to find the second smallest item and swap it with the second item of the array. Since we are always _selecting_, thus the name for this sorting algorithm. 
 
-Note that ideally, we should be able to run this algorithm on arrays with all kinds of comparable objects. However, since we are implementing in Python, for economy, our version only works for arrays of integers.
+We should be able to run this algorithm on arrays with all kinds of comparable objects. Python has made that easy for us.
 
 ## Implementation
 
