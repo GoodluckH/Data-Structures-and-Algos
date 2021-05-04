@@ -74,6 +74,8 @@ _ _ _ _ _ _ _ _ _ _ _ U V _ _ _
 _ _ _ _ _ _ _ _ _ _ _ _ V V _ _
 _ _ _ _ _ _ _ _ _ _ _ _ _ V Z _
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ Z U
+
+Resulting Array:
 B C C C E G G H K T T U U V V Z
 ```
 
