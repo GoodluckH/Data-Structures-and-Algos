@@ -83,3 +83,41 @@ B C C C E G G H K T T U U V V Z
 So, the moral of the story is we perform a bunch of high-level Insertion Sorts to make the array largely sorted, therefore when `h = 1`, the Insertion Sort is very fast. The runtime, however, is hard to obtain since it's sensitive to how we decide and use `h`. 
 
 It appears to be linearithmic, or `O(nlogn)`, or `N^(5/4)`, `N^(4/3)`, etc.. But one thing that is clear is that it's definitely faster than Insertion Sort's `O(N^2)`runtime.
+
+## Interesting Findings
+
+If we instruct the algorithm to print a number that represents the number of compares over the array size for each increment, then we can find that such number is a small constant, regardless of what we put in.
+
+Simply run `python3 test.py` to observe this:
+
+```cmd
+The array size is 100
+When h is 40, constant is 0.01000
+When h is 13, constant is 0.01000
+When h is 4, constant is 0.01000
+When h is 1, constant is 0.01000
+-------------------- 
+
+The array size is 1000
+When h is 364, constant is 0.00100
+When h is 121, constant is 0.00100
+When h is 40, constant is 0.00100
+When h is 13, constant is 0.00100
+When h is 4, constant is 0.00100
+When h is 1, constant is 0.00100
+-------------------- 
+
+The array size is 10000
+When h is 9841, constant is 0.00010
+When h is 3280, constant is 0.00010
+When h is 1093, constant is 0.00010
+When h is 364, constant is 0.00010
+When h is 121, constant is 0.00010
+When h is 40, constant is 0.00010
+When h is 13, constant is 0.00010
+When h is 4, constant is 0.00010
+When h is 1, constant is 0.00010
+-------------------- 
+```
+
+Note that the constant has a relationship with the array size. So the constant number is simple `1/N` where `N` is the array size.
