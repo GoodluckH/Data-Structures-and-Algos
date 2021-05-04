@@ -86,38 +86,66 @@ It appears to be linearithmic, or `O(nlogn)`, or `N^(5/4)`, `N^(4/3)`, etc.. But
 
 ## Interesting Findings
 
-If we instruct the algorithm to print a number that represents the number of compares over the array size for each increment, then we can find that such number is a small constant, regardless of what we put in.
+If we instruct the algorithm to print a number that represents the number of compares over the array size for each increment, then we can find that such number is a small constant for each `h`, regardless of what we put in.
 
-Simply run `python3 test.py` to observe this:
+Simply run `python3 test.py` to observe this. Here, we ran the test for three times, and when the array size is 100, here is the result from the three runs:
 
 ```cmd
-The array size is 100
-When h is 40, constant is 0.01000
-When h is 13, constant is 0.01000
-When h is 4, constant is 0.01000
-When h is 1, constant is 0.01000
--------------------- 
+Run 1
+When h is 40, the number of compare is 73, the ratio is 0.6
+When h is 13, the number of compare is 152, the ratio is 0.9
+When h is 4, the number of compare is 219, the ratio is 1.1
+When h is 1, the number of compare is 286, the ratio is 1.4
 
-The array size is 1000
-When h is 364, constant is 0.00100
-When h is 121, constant is 0.00100
-When h is 40, constant is 0.00100
-When h is 13, constant is 0.00100
-When h is 4, constant is 0.00100
-When h is 1, constant is 0.00100
--------------------- 
+Run 2
+When h is 40, the number of compare is 71, the ratio is 0.6
+When h is 13, the number of compare is 153, the ratio is 0.9
+When h is 4, the number of compare is 219, the ratio is 1.1
+When h is 1, the number of compare is 272, the ratio is 1.4
 
-The array size is 10000
-When h is 9841, constant is 0.00010
-When h is 3280, constant is 0.00010
-When h is 1093, constant is 0.00010
-When h is 364, constant is 0.00010
-When h is 121, constant is 0.00010
-When h is 40, constant is 0.00010
-When h is 13, constant is 0.00010
-When h is 4, constant is 0.00010
-When h is 1, constant is 0.00010
--------------------- 
+Run 3
+When h is 40, the number of compare is 77, the ratio is 0.6
+When h is 13, the number of compare is 151, the ratio is 0.9
+When h is 4, the number of compare is 252, the ratio is 1.3
+When h is 1, the number of compare is 265, the ratio is 1.3
+```
+You can see that the results are basically the same.
+
+We can run the same experiment on arrays with size of 10000:
+
+```cmd
+Run 1
+When h is 9841, the number of compare is 159, the ratio is 0.5
+When h is 3280, the number of compare is 9043, the ratio is 0.7
+When h is 1093, the number of compare is 17360, the ratio is 1.0
+When h is 364, the number of compare is 23767, the ratio is 1.2
+When h is 121, the number of compare is 28913, the ratio is 1.5
+When h is 40, the number of compare is 36812, the ratio is 1.8
+When h is 13, the number of compare is 47609, the ratio is 2.4
+When h is 4, the number of compare is 43160, the ratio is 2.2
+When h is 1, the number of compare is 27543, the ratio is 1.4
+
+Run 2
+When h is 9841, the number of compare is 159, the ratio is 0.5
+When h is 3280, the number of compare is 9008, the ratio is 0.7
+When h is 1093, the number of compare is 17203, the ratio is 1.0
+When h is 364, the number of compare is 23521, the ratio is 1.2
+When h is 121, the number of compare is 29886, the ratio is 1.5
+When h is 40, the number of compare is 36041, the ratio is 1.8
+When h is 13, the number of compare is 46890, the ratio is 2.3
+When h is 4, the number of compare is 45661, the ratio is 2.3
+When h is 1, the number of compare is 27542, the ratio is 1.4
+
+Run 3
+When h is 9841, the number of compare is 159, the ratio is 0.5
+When h is 3280, the number of compare is 9070, the ratio is 0.7
+When h is 1093, the number of compare is 17222, the ratio is 1.0
+When h is 364, the number of compare is 23947, the ratio is 1.2
+When h is 121, the number of compare is 29565, the ratio is 1.5
+When h is 40, the number of compare is 37490, the ratio is 1.9
+When h is 13, the number of compare is 53237, the ratio is 2.7
+When h is 4, the number of compare is 48279, the ratio is 2.4
+When h is 1, the number of compare is 27938, the ratio is 1.4
 ```
 
-Note that the constant has a relationship with the array size. So the constant number is simple `1/N` where `N` is the array size.
+With large array sizes, there are fewer variations for our constant. 
