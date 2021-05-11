@@ -41,12 +41,12 @@ def merge(arr, lo, mid, hi):
         elif j > hi: # Exhausted the right array
             arr[k] = aux[i]
             i += 1
-        elif aux[i] < aux[j]:
-            arr[k] = aux[i]
-            i += 1
-        else:
+        elif aux[j] < aux[i]:
             arr[k] = aux[j]
             j += 1
+        else:
+            arr[k] = aux[i]
+            i += 1
 
 
    
