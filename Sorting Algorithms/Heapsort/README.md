@@ -22,13 +22,13 @@ The `insert` and the `delMax` methods each takes *lgN* runtime because the heigh
 
 ## Heapsort Runtime and Space Complexity Analysis
 
-There are essentially two parts. The first part is to convert the input array into a max-oriented heap. We do so using the "sink down" approach where starting in the middle of the array, we sink each key to the left to its apposite position until the pointer crosses index 1. 
+There are essentially two parts. The first part is to convert the input array into a max-oriented heap. We do so using the "sink down" approach where starting in the middle of the array, we sink each key to the left to its proper position until the pointer crosses index 1. 
 
 This operation costs *2N* in runtime because the number of exchanges is about *N* but our `sink` method requires 2 compares. 
 
 The second part of the sorting is to remove the current max and swap it with the last key in the array. Then, sink that last key down to where it belongs. And repeat until we delete the whole heap. Doing this allows as to sort the array in place. And this part costs *2NlgN* in runtime because the `delMax` runs in *2lgN* and we perform *N* times `delMax`.
 
-Therefore, the entire sorting operation runs in *2N + 2NlgN*, which is *O(NlgN)*. 
+Therefore, the entire sorting operation runs in *2N + 2NlgN*, which is *O(NlgN)*. The best case scenario comes when all elements are equal, in this case, we don't perform and sink or swim operations, so the algo runs in *N* linear time.
 
 Note that there's no recursion calls and that we sort the array in place. That means we use constant additional space. Heapsort's runtime and space efficiency makes it a desirable sorting algo for applications with restricted space.
 
