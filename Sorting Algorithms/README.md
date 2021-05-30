@@ -11,7 +11,7 @@
 | Shellsort | *Ω(N)*  | *Θ(N(lgN)^2)*   | *O(N(lgN)^2)* |*O(1)*  | No |
 | Merge Sort  |  *Ω(NlgN)*  | *Θ(NlgN)*     | *O(NlgN)*   |*O(N)* | Yes | 
 | Quicksort | *Ω(NlgN)*  | *Θ(NlgN)*    | *O(N^2)* |*O(N)*  | No |
-| Heapsort | *Ω(NlgN)*|*Θ(NlgN)*   | *O(NlgN)*   |*O(1)*  | No|
+| Heapsort | *Ω(N)*|*Θ(NlgN)*   | *O(NlgN)*   |*O(1)*  | No|
 
 ## Comments on Each Algo
 
@@ -30,6 +30,6 @@ Note that we also have an iterative bottom-up approach that comes with an abstac
 
 The average runtime for quicksort is linearithmic because we are always partitioning the array by half, which gives a tree of height of `lgN`, and on each level, it takes about `N` compares.
 
-**Heapsort:** the runtime is linearithmic for all cases with constant space complexity because it sorts the array in-place without making recursive calls. It's linearithmic in runtime because the heap constructor takes `2N` times (the `sink` operation takes 2 compares each time, and is called ~N times), and the sink down sort operation takes 2NlgN times, for 2lnN is the number of compares in sinking and N because we want to remove and sink N elements.
+**Heapsort:** the runtime is linearithmic for average and worst cases with constant space complexity because it sorts the array in-place without making recursive calls. It's linearithmic in runtime because the heap constructor takes `2N` times (the `sink` operation takes 2 compares each time, and is called ~N times), and the sink down sort operation takes 2NlgN times, for 2lnN is the number of compares in sinking and N because we want to remove and sink N elements.
 
-Therefore, the upper-bound runtime is `O(NlgN)`. 
+Therefore, the upper-bound runtime is `O(NlgN)`. The best case is when all elements are equal, so we just perform 2 compares when `delMax` is called with no sinking operations involved. And we do this for N times to get a best case runtime of `N`.
