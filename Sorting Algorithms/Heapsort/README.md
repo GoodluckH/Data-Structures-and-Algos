@@ -1,4 +1,4 @@
-#Heapsort
+# Heapsort
 
 A heap is a data structure that resembles a binary search tree. The difference is that a heap perserves certain priority. For example, a max-oriented heap will have the largest item on its root and have the invariant that the children of a node must be smaller or equals to the node.
 
