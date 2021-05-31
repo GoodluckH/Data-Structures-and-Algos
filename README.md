@@ -1,6 +1,3 @@
-# Data Structures and Algorithms
-### *A personal learning journal*
+# Learning Journal
 
-This repo contains core knowledge that I deem essential for breaking into the tech industry. I try to implement concepts by hand to get a firm understanding.
-
-Aside from traditional DS&A, I also push stuff from other fields that I believe are helpful. 
+Learning is a life long duty to anyone who wants to get the most of their ephemeral existence in our universe. Although the process can be monotonous, the returns on investment can be satisfactory.
