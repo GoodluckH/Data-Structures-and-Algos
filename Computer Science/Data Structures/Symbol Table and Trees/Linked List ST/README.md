@@ -1,8 +1,4 @@
-# Symbol Tables
-
-We need an efficient way to store and search things. Symbol tables provide a great solution to data processing problems. A symbol table can be thought of an associated array where the index of the array is the `key`, and it returns `value` associated with such `key`. In Python, this abstraction is well designed as users can add and search for keys as they would with a typical array.
-
-## Sequential Search Symbol Table with Unordered Linked List
+# Sequential Search Symbol Table with Unordered Linked List
 
 This is going to be a primitive implementation of a symbol table that does not have any adavanced features. The most essential operations that a client might use are `put`, `get`, `delete` and perhaps `contains` methods. It's quite straightforward to implement with a linked list. However, we are not able to rank keys to perform other computational tasks.
 

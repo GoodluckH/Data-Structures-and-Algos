@@ -211,6 +211,14 @@ public class BST<Key extends Comparable<Key>, Value> {
         for (String s: test.keys()){
             System.out.println(s);
         }
+
+        BST<Character, Character> large = new BST<>();
+
+        for (int i = 1; i <= 10000; i++) {
+            large.put((char)i, (char)i);
+        }
+
+      //  System.out.println((int)large.max());
     }
        
 }
