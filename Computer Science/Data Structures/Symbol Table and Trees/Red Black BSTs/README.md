@@ -41,7 +41,9 @@ Introducing Red-Black BSTs.
 ## Red-Black BSTs
 
 We can use different colors to encode 3-nodes. For example, we can use a *red* link between two nodes to represent a 3-node (see image below, credit: *Algorithms 4th Edition*).
+
  ![An illustration of red-black BST](https://i.imgur.com/N6FGNyY.png)
+ 
 In this way, we can perform the  `get()` operation the same we do it for a traditional BST. 
 
 More, we need to make sure that our red links are left leaning, which means only the links to the left node can be colored with red. To maintain this invariant, we need to introduce some *rotation* operations.
