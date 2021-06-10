@@ -11,4 +11,5 @@ Here's a summary of the cost for different implementations on various of operati
 |*Binary Tree Search with BST*| N | N | 1.39lgN | 1.39lgN| Yes|
 |*2-3 Tree Search with red-black BST*| 2lgN | 2lgN | 1.00lgN | 1.00lgN| Yes|
 |*Hash Table with Separate Chaining*| lgN | lgN | 3-5 | 3-5 |No|
+|*Hash Table with Linear Probing*| lgN | lgN | 3-5 | 3-5 |No|
 
