@@ -12,6 +12,7 @@ Undirected graphs are simply made of vertices and edges with no extra informatio
 
 We can also use `Set` to implement our adjacency list to disallow parallel edges. However, it will comes at logarithmic costs for adding edges. 
 
+
 **Performance Summary**
 
 | Data Structure | Space |Add Edge v-w |Check if v-w | adj(v) |
@@ -21,7 +22,7 @@ We can also use `Set` to implement our adjacency list to disallow parallel edges
 | *Adjacency lists* | V + E | 1 | degree(v) | degree(v)|
 | *Adjacency sets* | V + E | log(V) | log(V) | log(V) + degree(v)|
 
-##Undirected Graph Implementation using Adjacency Lists##
+## Undirected Graph Implementation using Adjacency Lists
 
 *requires algs4.jar for Bag*.
 
