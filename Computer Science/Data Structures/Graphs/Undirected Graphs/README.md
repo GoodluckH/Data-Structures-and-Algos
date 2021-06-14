@@ -23,7 +23,7 @@ We can also use `Set` to implement our adjacency list to disallow parallel edges
 
 ## Undirected Graph Implementation using Adjacency Lists
 
-*requires algs4.jar for Bag*.
+*requires algs4.jar for Bag and In*.
 
 ```java
 public class Graph {
@@ -130,4 +130,159 @@ public class DFSPath {
     }
 ```
 
-The DFS search algorithm has a runtime proportional to the sum of degrees of all vertices visited. And the path finding algorithm has a runtime proportional to the path's length.
+The DFS search algorithm has a runtime proportional to the sum of degrees of all vertices visited. And the path finding algorithm has a runtime proportional to the path's length. Note that DFS does not address the question *what is the shortest path from v to w?*, because the order of how we find a path takes no consideration of the length (number of edges).
+
+## Connected Components
+
+We can extend our DFS to implement a Connected Components class where we can find out about all components in a graph as well as the vertices within each component. To do this, we also need an array `id[]` to group vertices into their respective components.
+
+```java
+public class CC {
+    private boolean[] marked;
+    private int[] id;
+    private int count;
+
+    public CC(Graph G) {      // preprocess the graph
+        marked = new boolean[G.V()];
+        id = new int[G.V()];
+        for (int v = 0; v < G.V(); v++) {
+            if (!marked[v]){
+                dfs(G, v);
+                count++;
+                }
+            }
+        }
+
+    private void dfs(Graph G, int v) {
+        marked[v] = true;
+        id[v] = count;         // group v to a component defined by count 
+        for (int x: G.adj(v)) {
+            if (!marked[x]) dfs(G, x);
+            }
+        }
+
+    public boolean connected(int v, int w) { return id[v] == id[w]; }
+
+    public int count() { return count; }
+    
+    public int id(int v) { return id[v]; }     // component id
+    }
+```
+
+The runtime of CC should be proportional to V + E because we are essentially using the DFS algorithm. But since we are visiting all vertices, the runtime is putatively 2E. To query `connected`, it's constant time just like the quick find data structure. However, although Union Find takes logarithmic runtime for connectivity queries, it's faster in practice than CC because Union Find does not need to preprocessing a graph, and it also supports edge-adding operations while performing connectivity queries.
+
+## Cycles and Bipartite Detection 
+
+Using DFS we can also detect whether a graph contains cycles. So if a graph contains a cycle, then we can say that we will visit a marked vertext that is not the starting vertex itself. To do this, we need to pass in another argument in `dfs()` to keep track of the previous vertex. The implementation of such detection algo is as follow:
+
+```java
+public class Cycle {
+    private boolean[] marked;
+    private boolean hasCycle;
+
+    public Cycle(Graph G) {
+        marked = new boolean[G.V()];
+        for (int v = 0; v < G.V(); v++) {
+            if (!marked[v]) dfs(G, v, v);
+            }
+        }
+    
+    private void dfs(Graph G, int v, int u) {
+        marked[v] = true;
+        for (int x: G.adj(v)) {
+            if (!marked[x]) dfs(G, x, v);
+            else if (x != u) hasCycle = true;
+            }
+        }
+    
+    public boolean hasCycle() { return hasCycle; }
+
+    }
+```
+
+A bipartite graph entails coloring vertices with two colors in such way that no two adjacent vertices are of the same color, otherwise the graph is not bipartite. 
+
+```java
+public class Bipartite {
+    private boolean[] marked;
+    private boolean[] color;            // to mark each vertex with a 'color' of boolean value
+    private boolean isBipartite = true;
+
+    public Bipartite(Graph G) {
+        marked = new boolean[G.V()];
+        color = new boolean[G.V()];
+        for (int s = 0; s < G.V(); s++) {
+            if (!marked[s]) dfs(G, s);
+            }
+        }
+
+    private dfs(Graph G, int v) {
+        marked[v] = true;
+        for (int w: G.adj(v)) {
+            if (!marked[w]) {
+                color[w] = !color[v];
+                dfs(G, w);
+            else if (color[w] == color[v]) isBipartite = false;
+                }
+            }
+        }
+
+    public boolean isBipartite() { return isBipartite; }
+    }
+```
+
+
+
+# Breadth-First Search
+
+For DFS, we are essentially using a stack (provided by the call stack during recursion) to store and determine which vertex to visit next. Stack is a LIFO mechanism, so DFS will alwasy want to visit the next vertex added in to make deeper searches. Conversely, we want to implement BFS with a queue and performing the algo iteratively. A queue follows the FIFO mechanism so we visit the vertices that are  *k + 1* away from a vertex w, only after we have visited all of w's adjancent vertices.
+
+The breadth-first principle makes sure that we only store the shortest path to all vertices. That's because we are marking all immediate adjacent vertices every time before exploring further, so the path to each vertices are only 1 edge away each time they are visited and marked. So the longer path to the same vertex will be ignored because we've already marked that vertex.
+
+To implement BFS is feat, we just need to make some modification to our DFS code by utilizing a queue in a `while` loop.
+
+```java
+public class BFS {
+    private boolean[] marked;
+    private int[] edgeTo;
+    private final int s;
+
+    public BFS(Graph G, int s) {
+        marked = new boolean[G.V()];
+        edgeTo = new int[G.V()];
+        this.s = s;
+        bfs(G, s);
+        }
+
+    private void bfs(Graph G, int s) {
+        Queue<Integer> queue = new Queue<Integer>();
+        marked[s] = true;
+        queue.enqueue(s);
+
+        while (!queue.isEmpty()) {
+            int v = queue.dequeue();
+            for (int x: G.adj(v)) {
+                if (!marked[x]) {
+                    marked[x] = true;
+                    edgeTo[x] = v;
+                    queue.enqueue(x);
+                    }
+                }
+            }
+        }
+
+    public boolean hasPathTo(int v) { return marked[v]; }
+
+    public Iterable<Integer> pathTo(int v) {
+        if (!hasPathTo(v)) return null;
+        Stack<Integer> path = new Stack<Integer>();
+        for (int x = v; x != s; x = edgeTo[x])
+            path.push(x);
+        path.push(s);
+        return path;
+        }
+    }
+```
+
+Similar to DFS, BFS has a runtime of V + E in worst case because the algorithm involves checking all vertices and their adjacent vertices. If the graph is connected, then the runtime will just be 2E.
+
