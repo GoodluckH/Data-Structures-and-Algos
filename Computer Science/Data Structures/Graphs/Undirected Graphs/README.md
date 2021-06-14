@@ -12,7 +12,6 @@ Undirected graphs are simply made of vertices and edges with no extra informatio
 
 We can also use `Set` to implement our adjacency list to disallow parallel edges. However, it will comes at logarithmic costs for adding edges. 
 
-
 **Performance Summary**
 
 | Data Structure | Space |Add Edge v-w |Check if v-w | adj(v) |
@@ -65,4 +64,70 @@ public class Graph {
 
 # Depth-First Search
 
+Sometimes we want to process a graph by traversing it. DFS is a very simple but powerful method of doing so. Building upon DFS, we can also address path validating and finding algorithms.
 
+To begin, we can define a DFS class:
+
+```java
+public class DFS {
+    private boolean[] marked;         // we need to mark vertices so we don't recursively call them more than once
+    private int count;
+
+    public DFS(Graph G, int s) {
+        marked = new boolean[G.V()];
+        dfs(G, s)
+        }
+    
+    private void dfs(Graph G, int v) {
+        marked[v] = true;
+        count++;
+        for (int x: G.adj(v)) {
+            if (!marked[x]) dfs(G, x);
+            }
+        }
+    
+    public int count() { return count; }
+   
+    public boolean marked(int v) { return marked[v]; }
+    }
+```
+
+Simple, but we can do more with the API. How about finding a path or simply find out if there is a path between v and w? Now, we can implement a Path class based on DFS. We need to maintain an array of int values to keep track of paths (similar to what we did for the [Union Find](https://github.com/GoodluckH/learn/tree/main/Computer%20Science/Union%20Find) data structure).
+
+```java
+public class DFSPath {
+    private boolean[] marked;
+    private int[] edgeTo;
+    private final int s;     // source vertex
+
+    public DFSPath(Graph G, int s) {
+        this.s = s;
+        marked = new boolean[G.V()];
+        edgeTo = new int[G.V()];
+        dfsPath(G, s);
+        }
+
+    private void dfsPath(Graph G, int v) {
+        marked[v] = true;
+        for (int x: G.adj(v) {
+            if (!marked[x]) {
+                edgeTo[x] = v;
+                dfsPath(G, x);
+                }
+            }
+        }
+
+    public boolean hasPathTo(int v) { return marked[v]; }
+
+    public Iterable<Integer> pathTo(int v) {
+        if (!hasPathTo(v) return null;
+        Stack<Integer> path = new Stack<Integer>();
+        for (int x = v; x != s; x = edgeTo[x]) 
+            path.push(x);
+        path.push(s);
+        return path;
+        }
+    }
+```
+
+The DFS search algorithm has a runtime proportional to the sum of degrees of all vertices visited. And the path finding algorithm has a runtime proportional to the path's length.
