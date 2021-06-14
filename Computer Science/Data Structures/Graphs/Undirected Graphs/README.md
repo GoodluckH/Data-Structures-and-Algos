@@ -1,4 +1,11 @@
 # Undirected Graphs
+**Table of Content**
+- [Undirected Graphs](#undirected-graphs)
+  * [Undirected Graph Implementation using Adjacency Lists](#undirected-graph-implementation-using-adjacency-lists)
+- [Depth-First Search](#depth-first-search)
+  * [Connected Components](#connected-components)
+  * [Cycles and Bipartite Detection](#cycles-and-bipartite-detection)
+- [Breadth-First Search](#breadth-first-search)
 
 Undirected graphs are simply made of vertices and edges with no extra information. We can only know if any two vertices are connected or not. We want to represent an undirected graph using data structures that are space and time efficient. There are a couple of candidates:
 
@@ -41,7 +48,7 @@ public class Graph {
     public Graph(In in) {
         this.(in.readInt());             // get V and constract the graph
         int E = in.readInt();            // get E
-        for (int i= 0; i < E; i++) {
+        for (int i = 0; i < E; i++) {
             int v = in.readInt();
             int w = int.readInt();
             addEdge(v, w);
