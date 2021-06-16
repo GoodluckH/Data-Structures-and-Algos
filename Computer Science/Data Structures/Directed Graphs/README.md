@@ -3,7 +3,7 @@
 - [Directed Graphs](#directed-graphs)
   * [Cycle Detection](#cycle-detection)
   * [DAGs and Topological Sort](#dags-and-topological-sort)
-  * [Kosaraju's Algorithm](#kosaraju-s-algorithm)
+  * [Kosaraju's Algorithm](#kosarajus-algorithm)
     + [Proofs](#proofs)
   * [All-Pair Reachability](#all-pair-reachability)
 
