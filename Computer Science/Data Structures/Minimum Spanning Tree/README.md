@@ -1,4 +1,12 @@
 # Minimum Spanning Tree
+**Table of Content**
+- [Minimum Spanning Tree](#minimum-spanning-tree)
+  * [Prim's Algorithm](#prims-algorithm)
+    + [Lazy Approach](#lazy-approach)
+    + [Eager Approach](#eager-approach)
+  * [Kruskal's Algorithm](#kruskals-algorithm)
+
+
 If we are dealing with undirected graphs with weighted edges, then we want to find out the tree in the graph whose sum of edges is no larger than other tree subgraphs.
 
 To do this, we need to first define an `Edge` object:
