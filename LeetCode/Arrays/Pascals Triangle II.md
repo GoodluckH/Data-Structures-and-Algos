@@ -33,7 +33,7 @@ public List<Integer> getRow(int rowIndex) {
     Arrays.fill(result, 0);
     result[0] = 1;
     for (int i = 1; i <= rowIndex; i++)
-        for (int j = i; j > 0; j--)
+        for (int j = i; j > 0; j--)         // since we are looping from the end, 1 will always be at the end.
             result[j] += result[j-1];
     return Arrays.asList(result);
     }

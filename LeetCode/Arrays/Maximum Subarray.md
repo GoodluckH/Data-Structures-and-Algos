@@ -25,7 +25,7 @@ We check nums[i] instead of localMax because say our localMax so far is -5, then
 
 ```java
 public int maxSubArray(int[] nums) {
-    int localMax = 0, globalMax = Integer.MIN_VALUE;
+    int localMax = 0, globalMax = Integer.MIN_VALUE;     // we cannot initiate localMax to MIN because if we add a negative number, it will turn to TMAX.
     for (int i = 0; i < nums.length; i++) {
         localMax = Math.max(localMax, localMax + nums[i]);
         if (localMax > globalMax) globalMax = localMax;
