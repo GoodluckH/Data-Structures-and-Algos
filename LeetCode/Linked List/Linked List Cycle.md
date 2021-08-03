@@ -19,11 +19,11 @@ Apparently, it's really testing our knowledge on using two pointers. We will hav
 ```java
 public boolean hasCycle(ListNode head) {
    if (head == null) return false;
-   ListNode slow = head, fast = head.next;
-   while (fast != null && fast.next != null && slow != null) {
-       if (slow == fast) return true;
+   ListNode slow = head, fast = head;
+   while (fast != null && fast.next != null) {
        slow = slow.next;
        fast = fast.next.next;
+       if (slow == fast) return true;
    }     
    return false;
 }
