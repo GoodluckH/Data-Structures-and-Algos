@@ -8,15 +8,17 @@ Given the head of a singly linked list, reverse the list, and return the reverse
 
 This is a quite classic problem. To begin, we need to have two pointers, one at null, another at head. So, as we loop through the LL, we just need to set the `curr.next` to `prev`, then update `curr` and `prev` accordingly, until we reach the end.
 
+Even better, we can just use `head` as our `curr` pointer because we are returning `prev` anyways.
+
 ## Implementation
 ```java
 public ListNode reverseList(ListNode head) {
-    ListNode prev = null, curr = head;
-    while (curr != null) {
-        ListNode temp = curr.next;
-        curr.next = prev;
-        prev = curr;
-        curr = temp;
+    ListNode prev = null;
+    while (head != null) {
+        ListNode temp = head.next;
+        head.next = prev;
+        prev = head;
+        head = temp;
     }   
     return prev;
 }
