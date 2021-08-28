@@ -17,7 +17,7 @@ If you know the center-out technique used in finding the [longest panlindrome su
 public int countSubstrings(String s) {
   int count = 0;
   for (int i = 0; i < s.length(); i++) 
-    count += cOut(s, i, i) + cOut (s, i, i + 1)
+    count += cOut(s, i, i) + cOut (s, i, i + 1);
   return count;
 }
 
