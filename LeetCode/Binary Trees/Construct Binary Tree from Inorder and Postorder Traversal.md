@@ -15,24 +15,24 @@ However, it's a bit tricky to do the left subtree. We need to actually do this a
 
 ## Implementation
 ```java
-int pInorder;
-int pPostorder; 
+int in;
+int post;
 
-private TreeNode helper(int[] inorder, int[] postorder, TreeNode end) {
-  if (pPostorder < 0) return null;
-  
-  TreeNode root = new TreeNode(postorder[pPostorder--]); 
-  if (inorder[pInorder] != root.val) root.right = helper(inorder, postorder, root);
-  pInorder--;
-  
-  if (end == null || inorder[pInorder] != end.val) root.left = helper(inorder, postorder, end);
-  return root;
+TreeNode build(int[] inorder, int[] postorder, int end) {
+    if (post < 0) return null;
+    if (end == inorder[in]) {in--; return null;}
+
+    TreeNode node = new TreeNode(postorder[post--]);
+    node.right = build(inorder, postorder, node.val);
+    node.left = build(inorder, postorder, end);
+
+    return node;
 }
 
 public TreeNode buildTree(int[] inorder, int[] postorder) {
-  pInorder = inorder.length - 1;
-  pPostorder = postorder.length - 1;
-  return helper(inorder, postorder, null);
+    in = inorder.length - 1;
+    post = postorder.length - 1;
+    return build(inorder, postorder, Integer.MIN_VALUE);
 }
 ```
 
