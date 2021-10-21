@@ -34,8 +34,8 @@ public int[] searchRange(int[] nums, int target) {
   j = nums.length - 1;
   
   while (i < j) {
-    int mid = (i + j) / 2 - 1;
-    if (nums[mid] > target) j = mid + 1;
+    int mid = (i + j) / 2 + 1;
+    if (nums[mid] > target) j = mid - 1;
     else i = mid;
   }
   ans[1] = i;
